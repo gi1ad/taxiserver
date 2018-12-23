@@ -1,21 +1,28 @@
 package com.gi1ad.taxiserver.controller;
 
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import com.gi1ad.taxiserver.entity.Taxi;
+import com.gi1ad.taxiserver.service.TaxiService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping ("/taxi")
+import java.util.List;
+
+@RestController
 public class TaxiController {
 
-    @RequestMapping (value = "/get", method = RequestMethod.GET)
+    @Autowired
+    private TaxiService service;
+
+    @RequestMapping(value = "/taxi", method = RequestMethod.GET)
     @ResponseBody
-    public String getTaxi (ModelMap model){
-        return "Taxi";
+    public List<Taxi> getAllTaxi() {
+        return service.getAll();
     }
 
-
+    @RequestMapping(value = "/taxi/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Taxi getTaxi (@PathVariable("id") long taxiId){
+        return service.getById(taxiId);
+    }
 }
