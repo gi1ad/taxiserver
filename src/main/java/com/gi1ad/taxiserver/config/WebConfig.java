@@ -12,4 +12,5 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ComponentScan("com.gi1ad.taxiserver")
 public class WebConfig implements WebMvcConfigurer {
 
+
 }
