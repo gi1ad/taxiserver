@@ -1,9 +1,11 @@
 package com.gi1ad.taxiserver.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -28,6 +30,10 @@ public class Taxi {
 
     @Column (name = "car_brand", nullable = false)
     private String carBrand;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date taxiDate;
 
 
     public Taxi() {
@@ -72,5 +78,13 @@ public class Taxi {
 
     public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Date getTaxiDate() {
+        return taxiDate;
+    }
+
+    public void setTaxiDate(Date taxiDate) {
+        this.taxiDate = taxiDate;
     }
 }
